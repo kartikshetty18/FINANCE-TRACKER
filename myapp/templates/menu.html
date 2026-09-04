@@ -1,0 +1,202 @@
+{% load static %}
+<!-- <ul class="sidebar-body-menu">
+                <li>
+                    <a class="active" href="index1.php"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
+                </li>
+                <li>
+                    <a class="show-cat-btn" href="##">
+                        <span class="icon document" aria-hidden="true"></span>Employee
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="add_employee.php">Add</a>
+                        </li>
+                        <li>
+                            <a href="employee_view.php">View</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="show-cat-btn" href="##">
+                        <span class="icon folder" aria-hidden="true"></span>Customer
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="add_customer.php">Add</a>
+                        </li>
+                         <li>
+                            <a href="customer_view.php">View</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="show-cat-btn" href="##">
+                        <span class="icon folder" aria-hidden="true"></span>Loan
+                        <span class="loan__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="loan.php">Add</a>
+                        </li>
+                         <li>
+                            <a href="loan_view.php">View</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="show-cat-btn" href="##">
+                        <span class="icon paper" aria-hidden="true"></span>Loan Updates
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="loan_transaction_view.php">View</a>
+                        </li>
+                        
+                    </ul>
+
+
+                </li>
+
+                
+                
+            </ul> -->
+
+            <ul class="sidebar-body-menu">
+                <li>
+                    <a class="active" href="{% url 'admin_home' %}"><span class="icon home" aria-hidden="true"></span>DASHBOARD</a>
+                </li>
+                <li>
+                    <a class="show-cat-btn" href="">
+                        <span class="icon document" aria-hidden="true"></span>EMPLOYEE
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="{% url 'employee' %}">Create Employee</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'employee_view' %}">View Employee</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="show-cat-btn" href="">
+                        <span class="icon folder" aria-hidden="true"></span>CUSTOMER
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="{% url 'customer' %}">Create Customer</a>
+                        </li>
+                         <li>
+                            <a href="{% url 'customer_view' %}">View Customer</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="show-cat-btn" href="">
+                        <span class="icon image" aria-hidden="true"></span>LOAN
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="{% url 'loan' %}">Create Loan</a>
+                        </li>
+                        <li>
+                           <a href="{% url 'loan_view' %}"> View Loan</a>
+                        </li>
+
+                        <li>
+                           <a href="{% url 'loan_history_view' %}"> Collection</a>
+                        </li>
+
+                        <li>
+                           <a href="{% url 'cust_wise_collection' %}"> Customer Wise Collection</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="show-cat-btn" href="">
+                        <span class="icon paper" aria-hidden="true"></span>TRANSACTION
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+
+                        <li>
+                            <a href="{% url 'approved_transaction' %}"> Approved Transaction</a>
+                        </li>
+                        
+                    </ul>
+
+
+                </li>
+
+
+
+
+                <li>
+                    <a class="show-cat-btn" href="bank.php">
+                        <span class="icon image" aria-hidden="true"></span>BANK
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="{% url 'bankTransaction' %}">Add Transaction</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'bankTransaction_view' %}">View</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a class="show-cat-btn" href="">
+                        <span class="icon image" aria-hidden="true"></span>REPORTS
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                       
+                        <li>
+                            <a href="{% url 'loan_report_admin' %}">Loan Report</a>
+                        </li>
+
+                       
+
+                    </ul>
+                </li>
+
+            </ul>

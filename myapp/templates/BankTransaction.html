@@ -1,0 +1,54 @@
+{% load static %}
+{% include 'header.html'%}
+<main class="main users chart-page" id="skip-target">
+  <div class="container mt-4">
+    <h2 class="main-title">Bank Transaction</h2>
+
+    {% if success %}
+      <p class="alert alert-success"> {{ success }}</p>
+    {% endif %}
+
+    <div class="card shadow p-4">
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Date:</label>
+            <input type="date" name="date" class="form-control border border-success">
+          </div>
+          <div class="col-md-6">
+            <label>Particular:</label>
+            <input type="text" name="particular" class="form-control border border-success">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Amount:</label>
+            <input type="number" name="amount" class="form-control border border-success">
+          </div>
+          <div class="col-md-6">
+            <label>Note:</label>
+            <input type="text" name="note" class="form-control border border-success">
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-12">
+            <label>Transaction Type:</label>
+            <select name="transaction_type" class="form-control border border-success">
+                <option value="Deposit"> Deposit</option>
+                 <option value="Withdraw"> Withdraw</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-success px-5" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+{% include 'footer.html'%}

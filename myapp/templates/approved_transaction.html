@@ -1,0 +1,74 @@
+{% load static %}
+{% include 'header.html' %}
+
+<main class="main users chart-page py-4" id="skip-target">
+  <div class="container">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2 class="main-title mb-1">Approved Loan Transaction Details</h2>
+        <p class="text-muted small mb-0">Overview of successfully processed loan collections</p>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-3">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light text-uppercase fs-7 tracking-wider text-secondary">
+              <tr>
+                <th class="ps-4 py-3">Agent</th>
+                <th class="py-3">Account No</th>
+                <th class="py-3">Customer</th>
+                <th class="py-3 text-end">Amount</th>
+                <th class="py-3 text-center">Deposit Date</th>
+                <th class="py-3">Particulars</th>
+                <th class="pe-4 py-3 text-center">Approval Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in udata %}
+              <tr>
+                <td class="ps-4 fw-medium text-dark">{{ r.agent }}</td>
+                <td><code class="text-monospace text-secondary">{{ r.acc_no }}</code></td>
+                <td>
+                  <div class="fw-semibold">{{ r.customer }}</div>
+                </td>
+                <td class="text-end fw-bold text-dark">₹{{ r.amount }}</td>
+                <td class="text-center text-muted fs-7">{{ r.deposit_date }}</td>
+                <td class="text-truncate" style="max-width: 200px;">{{ r.particulars }}</td>
+                <td class="pe-4 text-center">
+                  {% if r.approve_status|lower == 'approved' or r.approve_status|lower == 'success' %}
+                    <span class="badge bg-success-subtle text-success px-2 py-1.5 rounded-pill fw-semibold">Approved</span>
+                  {% elif r.approve_status|lower == 'pending' %}
+                    <span class="badge bg-warning-subtle text-warning-emphasis px-2 py-1.5 rounded-pill fw-semibold">Pending</span>
+                  {% else %}
+                    <span class="badge bg-secondary-subtle text-secondary px-2 py-1.5 rounded-pill fw-semibold">{{ r.approve_status }}</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="7" class="text-center py-5 text-muted">
+                  <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+                  No transaction records found.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot class="table-light border-top-2">
+              <tr class="align-middle">
+                <td colspan="3" class="text-end fw-semibold text-secondary py-3">Total Collection:</td>
+                <td class="text-end fw-extrabold text-success fs-5 py-3">₹{{ total_amount }}</td>
+                <td colspan="3" class="pe-4"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% include 'footer.html' %}

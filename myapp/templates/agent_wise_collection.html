@@ -1,0 +1,82 @@
+{% load static %}
+{% include 'header.html' %}
+
+<main class="main users chart-page" id="skip-target">
+  <div class="container">
+    <h2 class="main-title">Agent-wise Loan Amount Collection</h2>
+    <hr>
+
+    <div class="container mt-3">
+      <div class="row">
+        <form method="post">
+          {% csrf_token %}
+
+          <!-- Agent Dropdown Filter -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="agent" class="form-label">Select Agent:</label>
+              <select name="agent" class="form-control border-success" required>
+                <option value="">-- Choose Agent --</option>
+                {% for r in data %}
+                  <option value="{{ r.username }}" {% if selected_agent == r.emp_name %}selected{% endif %}>
+                    {{ r.emp_name }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-md-6 d-flex align-items-end">
+              <button type="submit" name="filter" class="btn btn-success">Filter</button>
+            </div>
+          </div>
+
+          {% if udata %}
+          <!-- Loan Table Display -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>Select</th>
+                  <th>Agent</th>
+                  <th>Account No</th>
+                  <th>Customer</th>
+                  <th>Amount</th>
+                  <th>Deposit Date</th>
+                  <th>Particulars</th>
+                  <th>Approval Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for r in udata %}
+                <tr>
+                  <td><input type="checkbox" name="selected_ids" value="{{ r.id }}"></td>
+                  <td>{{ r.agent }}</td>
+                  <td>{{ r.acc_no }}</td>
+                  <td>{{ r.customer }}</td>
+                  <td>{{ r.amount }}</td>
+                  <td>{{ r.deposit_date }}</td>
+                  <td>{{ r.particulars }}</td>
+                  <td>{{ r.approve_status }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              <tfoot>
+                <tr class="table-secondary fw-bold">
+                  <td colspan="3" class="text-end fs-5">Total Collection:</td>
+                  <td class="fs-5 text-success">₹{{ total_amount }}</td>
+                  <td colspan="3"></td>
+                  <td>
+                    <input type="hidden" name="agent" value="{{ selected_agent }}">
+                    <button type="submit" name="approve" class="btn btn-warning btn-sm">Approve Selected</button>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% include 'footer.html' %}

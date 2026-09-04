@@ -1,0 +1,78 @@
+{% load static %}
+{% include 'header.html'%}
+<main class="main users chart-page" id="skip-target">
+  <div class="container mt-4">
+    <h2 class="main-title">Edit Loan</h2>
+
+    <div class="card p-4 shadow-sm">
+      <form method="post">
+        {% csrf_token %}
+         {% for r in data %}
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Agent:</label>
+            <input type="text" value="{{ r.agent }}" name="agent" class="form-control border border-success">
+          </div>
+          <div class="col-md-6">
+            <label>Account No:</label>
+            <input type="text" value="{{ r.acc_no }}" name="acc_no" class="form-control border border-success">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Customer No:</label>
+            <input type="text" readonly value="{{ r.cust_no }}" name="cust_no" class="form-control border border-success">
+          </div>
+          <div class="col-md-6">
+            <label>Amount:</label>
+            <input type="number" id="amount" oninput="calInterest()" value="{{ r.amount }}" name="amount" class="form-control border border-success">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Interest:</label>
+            <input type="number" id="interest" value="{{ r.interest }}" name="interest" class="form-control border border-success">
+          </div>
+          <div class="col-md-6">
+            <label>Issue Date:</label>
+            <input type="date" value="{{ r.issue_date|date:'Y-m-d' }}" name="issue_date" class="form-control border border-success">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Due Date:</label>
+            <input type="date" value="{{ r.due_date|date:'Y-m-d' }}" name="due_date" class="form-control border border-success">
+          </div>
+          <div class="col-md-6">
+            <label>Loan Status:</label>
+            <input type="text" value="{{ r.loan_status }}" name="loan_status" class="form-control border border-success">
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label>Payment Mode:</label>
+            <input type="text" value="{{ r.payment_mode }}" name="payment_mode" class="form-control border border-success">
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-success px-5" type="submit">Submit</button>
+        </div>
+        {% endfor %}
+      </form>
+    </div>
+  </div>
+</main>
+<script>
+  function calInterest()
+  {
+      let amount=document.getElementById('amount').value
+      interest=(amount*10)/100
+      document.getElementById('interest').value=interest
+  }
+</script>
+{% include 'footer.html'%}

@@ -1,0 +1,74 @@
+{% load static %}
+
+            <ul class="sidebar-body-menu">
+                <li>
+                    <a class="active" href=""><span class="icon home" aria-hidden="true"></span>DASHBOARD</a>
+                </li>
+                <li>
+                    <a class="show-cat-btn" href="">
+                        <span class="icon document" aria-hidden="true"></span>LOAN TRANSACTION
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="{% url 'loan_view_agent' %}">Loan</a>
+                        </li>
+                         <li>
+                            <a href="{% url 'loan_history_view_agent' %}">View</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="show-cat-btn" href="">
+                        <span class="icon image" aria-hidden="true"></span>APPROVED LOAN
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+
+                        <li>
+                           <a href="{% url 'approved_loan_view' %}"> View</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+
+
+
+
+                <li>
+                    <a class="show-cat-btn" href="">
+                        <span class="icon image" aria-hidden="true"></span>REPORTS
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                       
+                        <li>
+                            <a href="{% url 'loan_report_open' %}">Open Loan Report</a>
+                        </li>
+                         <li>
+                            <a href="{% url 'loan_report_close' %}">Close Loan Report</a>
+                        </li>
+
+                         
+
+
+
+
+                    </ul>
+                </li>
+
+            </ul>

@@ -1,0 +1,49 @@
+{% load static %}
+{% include 'agent_header.html' %}
+
+<main class="main users chart-page" id="skip-target">
+  <div class="container">
+    <h2 class="main-title">Collected Loan Amount Details</h2>
+    <hr>
+<div class="container mt-3">
+    <div class="row">
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th> agent </th>
+                <th> acc_no</th>
+                <th> Customer </th>
+                <th> amount </th>
+                <th> deposit_date</th>
+                <th> particulars </th>
+                <th> approve_status </th>
+                <th>action</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+               {% for r in data %}
+            <tr>
+<!--                <td>{{forloop.counter}}</td>-->
+                <td>{{r.agent}} </td>
+                <td> {{r.acc_no}}</td>
+                <td> {{r.customer}}</td>
+                <td>{{r.amount}}</td>
+                <td>{{r.deposit_date}}</td>
+                <td>{{r.particulars}} </td>
+                <td>{{r.approve_status}} </td>
+                <td><a href="{% url 'loan_history_del' r.id %}">Delete </a></td>
+                </tr>
+               {% endfor %}
+            </tbody>
+
+
+        </table>
+    </div>
+     </div>
+  </div>
+</main>
+
+{% include 'footer.html' %}

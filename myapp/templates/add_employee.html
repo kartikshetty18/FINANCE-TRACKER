@@ -1,0 +1,142 @@
+{% load static %}
+{% include 'header.html'%}
+    <!-- ! Main -->
+    <main class="main users chart-page" id="skip-target">
+      <div class="container">
+        <h2 class="main-title">Add Agent</h2>
+      
+        
+        <div class="row">
+          <div class="col-lg-12">
+            <!-- <div class="chart">
+              <canvas id="myChart" aria-label="Site statistics" role="img"></canvas>
+            </div> -->
+            <div class="users-table table-wrapper">
+
+            	<form method="post" class="sign-up-form form" enctype="multipart/form-data">
+
+                <div class="row">
+                  <div class="col">
+
+            	<label class="">
+    <p class="form-label">Employee Type</p>
+    <div class="form-check form-check-inline">
+        
+        <input type="radio" class="form-check-input border border-1 border-success" name="emp_type" value="agent" checked>
+        
+        
+        <label for="radio1" class="form-check-label">Agent</label>
+    </div>
+    
+    <div class="form-check form-check-inline">
+        
+        <input type="radio" class="form-check-input border border-1 border-success" name="emp_type" value="admin" >
+        <label for="radio2" class="form-check-label">Admin</label>
+    </div>
+    
+    
+    <div class="form-check form-check-inline">
+        
+        <input type="radio" class="form-check-input border border-1 border-success"  name="emp_type" value="subadmin">
+        <label for="radio3" class="form-check-label">SubAdmin</label>
+    </div>
+    
+    
+</label>
+
+              </div>
+
+               <div class="col">
+
+        			<label class="form-label-wrapper">
+        				<p class="form-label">Name</p>
+        				<input class="form-input border border-1 border-success" type="text" name="emp_name" placeholder="Enter your name" required>
+      				</label>
+
+            </div>
+
+          </div>
+
+               <div class="row">
+
+                 <div class="col">
+                
+      				<label class="form-label-wrapper">
+        				<p class="form-label">Mobile No</p>
+        				<input class="form-input border border-1 border-success"
+        				 type="text" name="mobile_no"  placeholder="Enter your Mobile No" required>
+      				</label>
+
+               </div>
+
+                <div class="col">
+
+              <label class="form-label-wrapper">
+                <p class="form-label">Alt Mobile No</p>
+                <input class="form-input border border-1 border-success"
+                 type="text" name="alt_mobile_no"  placeholder="Enter your Alt Mobile No">
+              </label>
+
+            </div>
+          </div>
+
+                <div class="row">
+                   <div class="col">
+
+      				<label class="form-label-wrapper">
+        				<p class="form-label">Address</p>
+        				<input class="form-input border border-1 border-success" type="text" name="address"  placeholder="Enter Address" required>
+      				</label>
+
+               </div>
+
+                 <div class="col">
+
+      				<label class="form-label-wrapper">
+        				<p class="form-label">Upload Aadhar</p>
+        				<input class="form-input border border-1 border-success" type="file" name="file"  placeholder="Upload Aadhar (in pdf or image)">
+      				</label>
+
+            </div>
+
+            </div>
+
+              <div class="row">
+                  <div class="col">
+
+      				<label class="form-label-wrapper">
+        				<p class="form-label">Upload Check</p>
+        				<input class="form-input border border-1 border-success" type="file" name="file1"  placeholder="Upload Check">
+      				</label>
+
+               </div>
+
+                <div class="col">
+
+      				<label class="form-label-wrapper">
+        				<p class="form-label">Username</p>
+        				
+        				<input class="form-input border border-1 border-success" type="text" name="username" id="username"  placeholder="Enter username" required>
+      				</label>
+
+               </div>
+             </div>
+
+
+
+      				<label class="form-label-wrapper">
+        				<p class="form-label">Password</p>
+        				<input class="form-input border border-1 border-success" type="password" name="password"  placeholder="Enter password" required>
+      				</label>
+      				 <button  type="submit" name="submit" class="form-btn primary-default-btn transparent-btn">Submit</button>
+
+            	</form>
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+    <!-- ! Footer -->
+    {% include 'footer.html'%}

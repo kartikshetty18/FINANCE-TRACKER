@@ -1,0 +1,60 @@
+{% load static %}
+{% include 'agent_header.html' %}
+
+<main class="main users chart-page" id="skip-target">
+  <div class="container">
+    <h2 class="main-title">Update Loan Collection</h2>
+    <h4 class="text-danger"> Loan Amount: {{loan_amount}}</h4>
+    <hr>
+
+    <div class="container mt-4">
+      {% if success %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ success }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endif %}
+<form method="post">
+  {% csrf_token %}
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="customer" class="form-label">Customer Name:</label>
+      <input type="text" id="customer" name="customer" class="form-control border-success" value="{{ customer }}" readonly>
+    </div>
+
+    <div class="col-md-6">
+      <label for="acc_no" class="form-label">Account Number:</label>
+      <input type="text" id="acc_no" name="acc_no" class="form-control border-success" value="{{ acc_no }}" readonly>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="amount" class="form-label">Amount:</label>
+      <input type="number" id="amount" name="amount" class="form-control border-success" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="deposit_date" class="form-label">Deposit Date:</label>
+      <input type="text" value="{{today|date:'Y-m-d'}}" readonly id="deposit_date" name="deposit_date" class="form-control border-success" required>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="particulars" class="form-label">Particulars:</label>
+      <input type="text" id="particulars" name="particulars" class="form-control border-success">
+    </div>
+
+
+  </div>
+
+  <button type="submit" class="btn btn-success w-100">Submit</button>
+</form>
+
+    </div>
+  </div>
+</main>
+
+{% include 'footer.html' %}

@@ -1,0 +1,72 @@
+{% load static %}
+{% include 'header.html' %}
+
+<main class="main users chart-page" id="skip-target">
+  <div class="container py-4">
+    <h2 class="main-title text-center">Add Customer</h2>
+
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 bg-light p-4 rounded shadow-sm">
+        {% if success %}
+          <p class="alert alert-success">{{ success }}</p>
+        {% endif %}
+
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label>Cust ID:</label>
+              <input type="text" value="{{new_cust_id}}" name="cust_id" class="form-control border border-success">
+            </div>
+            <div class="col-md-6">
+              <label>Name:</label>
+              <input type="text" name="name" class="form-control border border-success">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label>Mobile No:</label>
+              <input type="number" name="mobile_no" class="form-control border border-success">
+            </div>
+            <div class="col-md-6">
+              <label>Aadhar No:</label>
+              <input type="number" name="aadhar_no" class="form-control border border-success">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label>District:</label>
+              <input type="text" name="district" class="form-control border border-success">
+            </div>
+            <div class="col-md-6">
+              <label>City:</label>
+              <input type="text" name="city" class="form-control border border-success">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label>Pincode:</label>
+              <input type="number" name="pincode" class="form-control border border-success">
+            </div>
+            <div class="col-md-6">
+              <label>Occupation:</label>
+              <input type="text" name="occupation" class="form-control border border-success">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <button class="btn btn-success w-100 mt-3" type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% include 'footer.html' %}

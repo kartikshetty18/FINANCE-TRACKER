@@ -1,0 +1,89 @@
+{% load static %}
+{% include 'header.html' %}
+
+<main class="main users chart-page" id="skip-target" style="min-height: 80vh;">
+  <div class="container-fluid py-4">
+
+    <!-- Page Title -->
+    <h2 class="main-title mb-4 text-center text-md-start">
+      E-Loan Process and Payment System
+    </h2>
+
+    <!-- Stat cards row -->
+    <div class="row stat-cards mb-5 justify-content-center">
+      <div class="col-md-12 col-xl-4">
+        {% include 'article.html' %}
+      </div>
+    </div>
+
+    <!-- Loan Details -->
+    <h2 class="main-title ms-3 mb-3 text-center text-md-start">
+      Loan Details
+    </h2>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="users-table table-responsive shadow-sm rounded">
+          <table class="table table-bordered table-striped align-middle mb-0 wb-100">
+
+            <thead class="table-dark">
+              <tr>
+                <th>#</th>
+                <th>Agent</th>
+                <th>Account No</th>
+                <th>Customer Name</th>
+                <th>Amount</th>
+                <th>Interest Rate</th>
+                <th>Issue Date</th>
+                <th>Loan Status</th>
+                <th>Due Date</th>
+                <th>Payment Mode</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for r in data %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ r.agent }}</td>
+                <td>{{ r.acc_no }}</td>
+                <td>{{ r.cust_no }}</td>
+                <td>{{ r.amount }}</td>
+                <td>{{ r.interest }}</td>
+                <td>{{ r.issue_date }}</td>
+
+                <td>
+                  <a href="{% url 'total_collection' r.acc_no %}" class="btn btn-success btn-sm">
+                    {{ r.loan_status }}
+                  </a>
+                </td>
+
+                <td>{{ r.due_date }}</td>
+                <td>{{ r.payment_mode }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Below Loan Table -->
+    <footer class="footer mt-4">
+      <div class="container footer--flex">
+        <div class="footer-start">
+          <p class="text-dark fs-4">
+            2026 © Finance Tracker -
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              E Loan Processing System
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</main>
+
+{% include 'footer.html' %}

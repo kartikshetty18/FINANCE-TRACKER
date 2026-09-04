@@ -1,0 +1,56 @@
+{% load static %}
+{% include 'header.html'%}
+
+<main class="main users chart-page" id="skip-target">
+  <div class="container">
+    <h2 class="main-title">Add Bank Transaction</h2>
+
+    {% if success %}
+      <p class="alert alert-success">{{ success }}</p>
+    {% endif %}
+
+    {% for r in data %}
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>Date:</label>
+          <input type="date" value="{{ r.date|date:'Y-m-d' }}" name="date" class="form-control border border-success">
+        </div>
+        <div class="col-md-6">
+          <label>Particular:</label>
+          <input type="text" value="{{ r.particular }}" name="particular" class="form-control border border-success">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+
+        <div class="col-md-12">
+          <label>Note:</label>
+          <input type="text" value="{{ r.note }}" name="note" class="form-control border border-success">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>Deposit:</label>
+          <input type="number" value="{{ r.deposit }}" name="deposit" class="form-control border border-success">
+        </div>
+        <div class="col-md-6">
+          <label>Withdraw:</label>
+          <input type="number" value="{{ r.withdraw }}" name="withdraw" class="form-control border border-success">
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-success w-50">Submit</button>
+        </div>
+      </div>
+    </form>
+    {% endfor %}
+  </div>
+</main>
+
+{% include 'footer.html'%}

@@ -1,0 +1,63 @@
+{% load static %}
+{% include 'header.html' %}
+
+<!-- Main -->
+<main class="main users chart-page" id="skip-target">
+  <div class="container mt-4">
+    <h2 class="main-title">Bank Transaction Details</h2>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card shadow-sm p-3 mb-4 bg-body rounded">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle text-center">
+              <thead class="table-dark">
+                <tr>
+                  <th>Date</th>
+                  <th>Particular</th>
+                  <th>Amount</th>
+                  <th>Note</th>
+                  <th>Deposit</th>
+                  <th>Withdraw</th>
+                  <th colspan="2">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for r in udata %}
+                <tr>
+                  <td>{{ r.date }}</td>
+                  <td>{{ r.particular }}</td>
+                  <td>{{ r.amount }}</td>
+                  <td>{{ r.note }}</td>
+                  <td>{{ r.deposit }}</td>
+                  <td>{{ r.withdraw }}</td>
+                  <td><a href="{% url 'bankTransaction_edit' r.id %}" class="btn btn-sm btn-primary">Edit</a></td>
+                  <td><a href="{% url 'bankTransaction_del' r.id %}" class="btn btn-sm btn-danger">Delete</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="8" class="text-muted">No transaction records found.</td>
+                </tr>
+                {% endfor %}
+
+               <tr>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td class="fs-3">{{total_deposit}} </td>
+                 <td class="fs-3">{{total_withdraw}} </td>
+                 <td colspan="2" class="fs-4 text-danger fw-bold">Balance: {{balance}} </td>
+
+
+               </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% include 'footer.html' %}

@@ -1,0 +1,113 @@
+{% load static %}
+{% include 'header.html' %}
+<!-- Main -->
+<main class="main users chart-page" id="skip-target">
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Add Loan</h2>
+
+    {% if success %}
+      <p class="alert alert-success text-center">{{ success }}</p>
+    {% endif %}
+
+    <div class="card shadow p-4 mx-auto" style="max-width: 900px;">
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Agent:</label>
+            <select name="agent" class="form-select border border-success">
+              {% for r  in data %}
+              <option value="{{r.username}}"> {{r.username}} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label>Account No:</label>
+            <input type="text" value="{{acc_no}}" name="acc_no" class="form-control border border-success" readonly>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Customer Name:</label>
+           <select name="cname" class="form-select border border-success">
+              {% for r  in cdata %}
+              <option value="{{r.name}}"> {{r.name}} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label>Loan Amount:</label>
+            <input type="number" name="amount" id="amount" oninput="calInterest()" class="form-control border border-success">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Interest:</label>
+            <input type="number"  id="interest" name="interest" class="form-control border border-success">
+          </div>
+          <div class="col-md-6">
+            <label>Issue Date:</label>
+            <input type="date" min="{{today}}" onchange="calculateDueDate()" id="issue_date" name="issue_date" class="form-control border border-success">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Due Date:</label>
+            <input type="date" id="due_date" readonly name="due_date" class="form-control border border-success">
+          </div>
+          <div class="col-md-6">
+             <label>Payment Mode:</label>
+
+            <select name="payment_mode" class="form-control border border-success">
+              <option value="cash"> cash </option>
+              <option value="check"> check </option>
+            </select>
+          </div>
+        </div>
+
+
+
+        <div class="text-center">
+          <button class="btn btn-success px-5" type="submit">Submit</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</main>
+
+<script>
+  function calInterest()
+  {
+      let amount=document.getElementById('amount').value
+      interest=(amount*10)/100
+      document.getElementById('interest').value=interest
+  }
+</script>
+
+<script>
+function calculateDueDate() {
+    const issueInput = document.getElementById('issue_date');
+    const dueInput = document.getElementById('due_date');
+
+    const issueDate = new Date(issueInput.value);
+    if (!isNaN(issueDate.getTime())) {
+        const dueDate = new Date(issueDate);
+        dueDate.setDate(dueDate.getDate() + 365); // Add 365 days
+
+        // Format to YYYY-MM-DD
+        const year = dueDate.getFullYear();
+        const month = String(dueDate.getMonth() + 1).padStart(2, '0');
+        const day = String(dueDate.getDate()).padStart(2, '0');
+
+        dueInput.value = `${year}-${month}-${day}`;
+    }
+}
+</script>
+
+<!-- Footer -->
+{% include 'footer.html' %}

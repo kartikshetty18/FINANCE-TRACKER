@@ -1,0 +1,62 @@
+{% load static %}
+{% include 'header.html'%}
+    <!-- ! Main -->
+    <main class="main users chart-page" id="skip-target">
+      <div class="container">
+        <h2 class="main-title">Add Employee</h2>
+  <div class="container mt-3">
+    <div class="row">
+        <h1> Add Loan History</h1>
+        {% if success %}
+        <p class="alert alert-success"> {{success}}</p>
+        {% endif %}
+
+       <form method="post">
+          {% csrf_token %}
+
+          <div class="mb-3 mt-3">
+             <label>agent  :</label>
+             <input type="text" name="agen" class="form-control border border-1 border-success w-50">
+          </div>
+
+           <div class="mb-3  mt-3">
+               <label>customer :</label>
+               <input type="text" name="customer" class="form-control border border-1 border-success w-50">
+           </div>
+
+
+           <div class="mb-3 mt-3">
+              <label>acc_no :</label>
+              <input type="number" name="acc_no" class="form-control border border-1 border-success w-50">
+           </div>
+
+           <div class="mb-3 mt-3">
+               <label>amount :</label>
+               <input type="number" name="amount" class="form-control border border-1 border-success w-50">
+           </div>
+
+           <div class="mb-3  mt-3">
+              <label>deposit_date : </label>
+              <input type="date" name="deposit_date" class="form-control border border-1 border-success w-50">
+           </div>
+
+           <div class="mb-3  mt-3">
+              <label>particulars :</label>
+              <input type="text" name="particulars" class="form-control border border-1 border-success w-50">
+           </div>
+
+           <div class="mb-3  mt-3">
+              <label>approve_status :</label>
+              <input type="text" name="approve_status" class="form-control border border-1 border-success w-50">
+           </div>
+
+           <button class="btn btn-success w-50" type="submit"> submit</button>
+       </form>
+    </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+    <!-- ! Footer -->
+    {% include 'footer.html'%}

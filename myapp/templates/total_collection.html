@@ -1,0 +1,99 @@
+{% load static %}
+{% include 'header.html' %}
+
+<main class="main users chart-page py-4" id="skip-target">
+  <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2 class="main-title mb-1">Customer-wise Loan Collection</h2>
+        <p class="text-muted small mb-0">Overview of total loan recovery data sorted by customer accounts</p>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-3">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+
+          <form method="post">
+            {% csrf_token %}
+
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light text-uppercase fs-7 tracking-wider text-secondary">
+                <tr>
+                  <th class="ps-4 py-3">Agent</th>
+                  <th class="py-3">Account No</th>
+                  <th class="py-3">Customer</th>
+                  <th class="py-3 text-end">Amount</th>
+                  <th class="pe-4 py-3 text-center">Deposit Date</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for r in data %}
+                <tr>
+                  <td class="ps-4 fw-medium text-dark">{{ r.agent }}</td>
+                  <td>
+                    <code class="text-monospace text-secondary bg-light px-2 py-1 rounded">
+                      {{ r.acc_no }}
+                    </code>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark">{{ r.customer }}</div>
+                  </td>
+                  <td class="text-end fw-bold text-dark">₹{{ r.amount }}</td>
+                  <td class="pe-4 text-center text-muted fs-7">{{ r.deposit_date }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="5" class="text-center py-5 text-muted">
+                    <p class="mb-0 fs-6 fw-medium">
+                      No collection data available for this period.
+                    </p>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+
+              <tfoot class="table-light border-top-2">
+                <tr class="align-middle">
+                  <td colspan="3" class="text-end fw-semibold text-secondary py-3">
+                    Total Collection:
+                  </td>
+                  <td class="text-end fw-extrabold text-success fs-5 py-3">
+                    ₹{{ paid_amount }}
+                  </td>
+                  <td class="pe-4"></td>
+                </tr>
+              </tfoot>
+            </table>
+
+            <hr>
+
+            <div class="p-3">
+              <p><b>Loan Amount:</b> ₹{{ loan_amount }}</p>
+
+              <p><b>Interest:</b> ₹{{ interest }}</p>
+
+              <p><b>Total Payable:</b> ₹{{ total_payable }}</p>
+
+              <p><b>Paid Amount:</b> ₹{{ paid_amount }}</p>
+
+              <p>
+                <b>Remaining Amount:</b>
+                <span style="color:red;font-weight:bold;">
+                  ₹{{ remaining_amount }}
+                </span>
+              </p>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% include 'footer.html' %}

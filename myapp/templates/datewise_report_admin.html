@@ -1,0 +1,37 @@
+{% load static %}
+{% include 'header.html' %}
+
+<main class="main users chart-page" id="skip-target">
+  <div class="container">
+    <h2 class="main-title"> Due Date Wise Loan Report</h2>
+
+    <hr>
+
+    <div class="container mt-4">
+      {% if success %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ success }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endif %}
+<form method="post">
+  {% csrf_token %}
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="d" class="form-label">Select Loan Type:</label>
+      <input type="date" name="d" class="form-control border-success">
+
+    </div>
+
+  </div>
+
+
+  <button type="submit" class="btn btn-success w-50">Submit</button>
+</form>
+
+    </div>
+  </div>
+</main>
+
+{% include 'footer.html' %}
